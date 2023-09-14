@@ -5,7 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 
+// Permet d'attacher le React et ses composants à la div id="root" de la page index.htmtl
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// Element racine de l'application : Utilisation du composant App.js
+// BrowserRouter ==> indique que React va utiliser la navigation react router
 root.render(
     <React.StrictMode>
         <BrowserRouter>
