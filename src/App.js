@@ -1,26 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {useState} from "react";
+import {Route, Routes} from "react-router-dom";
+import AddTask from "./components/AddTask";
+import TodoList from "./components/TodoList";
+import NoMatch from "./components/NoMatch";
+import NavBar from "./components/NavBar";
+import Login from "./components/Login";
+import {GlobalProvider} from "./components/GlobalState";
 
 export default function App() {
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [users, setUsers] = useState([]);
 
+    return (
+        <section id="todo">
+            <GlobalProvider>
+                <Routes>
+                    <Route path="/add-task" element={<AddTask/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/tasks/:search" element={<TodoList/>}/>
+                    <Route path="/tasks" element={<TodoList/>}/>
+                    <Route path="/" index element={<TodoList/>}/>
+                    <Route path="*" element={<NoMatch/>}/>
+                </Routes>
+                <NavBar/>
+            </GlobalProvider>
+        </section>
+    );
 }
-
